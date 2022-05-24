@@ -33,8 +33,6 @@ class PostController extends Controller
     {
         $post_model = new Post();
 
-        // dd($_REQUEST);
-
         $search = '';
         if ($request->input('search')['value']) {
             $search = $request->input('search')['value'];
@@ -57,16 +55,24 @@ class PostController extends Controller
             $buff = array();
             $buff[] = $row->id_post;
 
-            $buttons = '
-            <div style="width:100px" >
-            <a href="' . url('admin/post/edit/' . $row->id_post)
-                . '" class="btn btn-sm btn-primary" >edit</a>
+            $buttons = '<div style="width:120px" >';
+            $buttons .= '
             
-            <a class="btn btn-sm btn-danger"
-                onclick="delete_handler(' . $row->id_post . ')"
+            <a href="' . url('admin/post/edit/' . $row->id_post)
+                . '" class="btn btn-sm btn-primary" >edit</a> ';
+
+            // $buttons = '<a class="btn btn-sm btn-danger"
+            //     onclick="delete_handler(' . $row->id_post . ')"
+            // >delete</a>
+            // </div>
+            // ';
+
+            $buttons .= '<a class="btn btn-sm btn-danger delete_handler"
+            primary_val="' . $row->id_post . '"
             >delete</a>
-            </div>
             ';
+            $buttons .= '</div>';
+
 
             $buff[] = $buttons;
             $buff[] = $row->slug;
@@ -295,12 +301,21 @@ class PostController extends Controller
 
         return response()->json($res);
     }
+    // function delete($id)
+    // {
+    //     $delete = DB::table('post')
+    //         ->where('id_post', $id)
+    //         ->update(["deleted" => 1]);
+
+    //     return redirect('admin/post/');
+    // }
+
     function delete($id)
     {
         $delete = DB::table('post')
             ->where('id_post', $id)
             ->update(["deleted" => 1]);
 
-        return redirect('admin/post/');
+        // return redirect('admin/post/');
     }
 }

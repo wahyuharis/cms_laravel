@@ -30,7 +30,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable({
+        var table = $('#example').DataTable({
             "ordering": false,
             processing: true,
             serverSide: true,
@@ -41,27 +41,62 @@
             }],
             // stateSave: true,
             ajax: '<?= url('admin/post/datatables') ?>',
-        });
-    });
-
-    function delete_handler(id) {
-        bootbox.confirm({
-            message: "Yakin Menghapus Data?",
-            buttons: {
-                confirm: {
-                    label: 'Yes',
-                    className: 'btn-danger'
-                },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-secondary'
-                }
-            },
-            callback: function(result) {
-                if (result) {
-                    window.location.href = '<?= url('admin/post/delete/') ?>/' + id;
-                }
+            "drawCallback": function(settings) {
+                delete_handler();
             }
         });
-    }
+
+        function delete_handler() {
+            $('.delete_handler').click(function() {
+                var primary_val = $(this).attr('primary_val');
+                console.log(primary_val);
+
+                bootbox.confirm({
+                    message: "Yakin Menghapus Data?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-secondary'
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            $.get("<?= url('admin/post/delete') ?>/" + primary_val, function(data) {
+                                table.ajax.reload(null, false);
+                            });
+
+                        }
+                    }
+                });
+            });
+        }
+
+
+    });
+
+
+    // function delete_handler(id) {
+    //     bootbox.confirm({
+    //         message: "Yakin Menghapus Data?",
+    //         buttons: {
+    //             confirm: {
+    //                 label: 'Yes',
+    //                 className: 'btn-danger'
+    //             },
+    //             cancel: {
+    //                 label: 'No',
+    //                 className: 'btn-secondary'
+    //             }
+    //         },
+    //         callback: function(result) {
+    //             if (result) {
+    //                 window.location.href = '<?= url('admin/post/delete/') ?>/' + id;
+    //             }
+    //         }
+    //     });
+    // }
 </script>
