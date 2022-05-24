@@ -16,6 +16,8 @@ class FrontPostController extends Controller
 
         $post = DB::table('post')
             ->leftJoin('users', 'users.id_users', '=', 'post.id_users')
+            ->where('deleted', '=', 0)
+            ->where('active', '=', 1)
             ->orderByDesc('post.id_post')
             ->paginate(5);
 
@@ -71,7 +73,7 @@ class FrontPostController extends Controller
 
         $post = DB::table('post')
             ->leftJoin('users', 'users.id_users', '=', 'post.id_users')
-            ->whereRaw("post.title like  ? ",[ "%".$search."%" ])
+            ->whereRaw("post.title like  ? ", ["%" . $search . "%"])
             ->orderByDesc('post.id_post')
             ->paginate(5);
 

@@ -17,6 +17,8 @@ class FrontHomeController extends Controller
 
         $post = DB::table('post')
             ->leftJoin('users', 'users.id_users', '=', 'post.id_users')
+            ->where('deleted', '=', 0)
+            ->where('active', '=', 1)
             ->orderByDesc('post.id_post')
             ->limit(5)
             ->get();

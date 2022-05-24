@@ -68,9 +68,9 @@
                                 <label for="image">Image</label>
                                 <br>
                                 <?php if (!empty(trim($form['image']))) { ?>
-                                    <img src="<?= url('upload/' . $form['image']) ?>" style="height: 100px;width: 100px;border: 1px solid #ccc;">
+                                    <img id="image_uploaded" src="<?= url('upload/' . $form['image']) ?>" style="height: 100px;width: 100px;border: 1px solid #ccc;">
                                 <?php } ?><br>
-                                <input type="file" name="image" id="image">
+                                <input type="file" name="image" id="image" accept="image/*" onchange="loadFile(event);">
                                 <br>
                                 <br>
                             </div>

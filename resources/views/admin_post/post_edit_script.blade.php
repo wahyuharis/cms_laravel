@@ -1,4 +1,12 @@
 <script>
+    var loadFile = function(event) {
+        var output = document.getElementById('image_uploaded');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+
     $(document).ready(function() {
 
         $('input[name="post_date"]').daterangepicker({
@@ -24,7 +32,7 @@
         $('#tags').select2();
 
         $('#content').summernote({
-            height: 250, 
+            height: 250,
         });
 
 
