@@ -39,8 +39,8 @@ Route::get('/about/', [FrontAboutController::class, 'index']);
 Route::get('/post/', [FrontPostController::class, 'index']);
 Route::get('/contact/', [FrontContactController::class, 'index']);
 Route::get('/post/detail/{slug}', [FrontPostController::class, 'detail_post']);
-
-Route::post('/post/search/', [FrontPostController::class, 'search']);
+Route::get('/post/search/', [FrontPostController::class, 'search']);
+Route::get('/post/bytags/', [FrontPostController::class, 'bytags']);
 
 
 

@@ -68,7 +68,7 @@ $tags = DB::table('post_tags')->get();
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <form id="search-form" method="post" action="<?=url('post/search/')?>" >
+                        <form id="search-form" method="get" action="<?=url('post/search/')?>" >
                             <div class="form-floating">
                                 <input class="form-control" id="search" name="search" type="text" placeholder="Search" data-sb-validations="required" />
                                 <label for="search">Search</label>
@@ -85,7 +85,8 @@ $tags = DB::table('post_tags')->get();
                 <div class="row">
                     <div class="col-sm-12">
                         <?php foreach ($tags as $row) { ?>
-                            <span class="badge bg-secondary"><?= $row->tags_name ?></span> &nbsp;
+                            <!-- <span class="badge bg-secondary"><?= $row->tags_name ?></span> &nbsp; -->
+                            <a href="<?=url('post/bytags/?tags='. urlencode($row->tags_name) )?>" class="btn btn-sm btn-secondary" ><?=$row->tags_name?></a> &nbsp;
                         <?php } ?>
                     </div>
                 </div>
