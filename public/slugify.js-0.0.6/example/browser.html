@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+	<title>Test Slugify In Browser</title>
+	<script type="text/javascript" src="../min/slugify.en.min.js"></script>
+</head>
+<body>
+	<form onsubmit="return false">
+		Value: <input type="text" onchange="document.getElementById('slugifyValue').innerHTML = Slugify.parse(this.value);" />
+		<br />
+		<button>Test Slugify</button>
+	</form>
+	<div id="slugifyValue"></div>
+</body>
+</html>
