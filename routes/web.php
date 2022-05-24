@@ -86,6 +86,7 @@ Route::middleware([NativeLogin::class])->group(function () {
     Route::get('admin/images', [ImagesController::class, 'index']);
     Route::post('admin/images/upload/', [ImagesController::class, 'upload']);
     Route::get('admin/images_list', [ImagesController::class, 'images_list']);
+    Route::get('admin/images_list/{filename}', [ImagesController::class, 'image_delete']);
 
 
     Route::middleware([NativeLoginAdmin::class])->group(function () {

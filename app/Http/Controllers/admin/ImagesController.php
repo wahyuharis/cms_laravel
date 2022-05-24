@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ImagesController extends Controller
 {
@@ -38,9 +39,15 @@ class ImagesController extends Controller
     {
         $view_data = array();
 
-        $db = DB::table('images')->get()->toArray();
+        $db = DB::table('images')->orderByDesc('id_images')->get()->toArray();
         $view_data['images'] = $db;
 
         return view('admin_images.images_list', $view_data);
+    }
+
+    function image_delete($filename)
+    {
+        DB::table('images')->where('images_name','=',$filename)->delete();
+        File::delete("general_upload/" . $filename);
     }
 }

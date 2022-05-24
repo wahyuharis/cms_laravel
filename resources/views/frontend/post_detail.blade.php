@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <img src="<?= url('upload/' . $post_detail->image) ?>">
+        <img style="max-width: 100%;" src="<?= url('upload/' . $post_detail->image) ?>">
     </div>
 </div>
 

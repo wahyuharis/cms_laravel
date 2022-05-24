@@ -18,16 +18,38 @@
 
 
         function reload_imagelist() {
+            JsLoadingOverlay.show();
             $.ajax({
                 url: '<?= url('admin/images_list/') ?>',
                 type: 'get',
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     $('#image_list').html(response);
+                    delete_handler();
+                    JsLoadingOverlay.hide();
                 }
             });
         }
+
+        function delete_handler() {
+
+            $(".image-list-delete").click(function(e) {
+                var image_name = $(this).attr('image_name');
+                $.ajax({
+                    url: '<?= url('admin/images_list/') ?>/'+image_name,
+                    type: 'get',
+                    success: function(response) {
+                        //
+                        reload_imagelist();
+
+                    }
+                });
+            });
+        }
+
         reload_imagelist();
+
+
 
 
         $('#foto_uploader').on('change', function() {
