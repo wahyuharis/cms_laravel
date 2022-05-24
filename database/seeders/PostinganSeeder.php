@@ -34,7 +34,8 @@ class PostinganSeeder extends Seeder
                 'slug' => $word,
                 'image' => uniqid() . ".jpg",
                 'content' => $paragraph,
-                'id_post_category' => 1
+                'id_post_category' => 1,
+                'id_users'=>1,
             ]);
         }
     }

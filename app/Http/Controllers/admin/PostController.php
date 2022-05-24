@@ -188,13 +188,20 @@ class PostController extends Controller
             $validation_rule['active'] = 'required';
         }
 
-        $validator = Validator::make($request->all(), $validation_rule);
+        $custom_messages = array(
+            'id_post_category.required' => 'Category Wajib Di Isi',
+        );
+
+        $validator = Validator::make($request->all(), $validation_rule, $custom_messages);
 
         if ($validator->passes()) {
             $success = true;
         } else {
             $success = false;
             $err = $validator->errors()->all();
+
+
+
             foreach ($err as $err_msg) {
                 $message .= '' . $err_msg . "<br>";
             }

@@ -19,4 +19,4 @@
 <br />
 
 
-{{ $post->links() }}
+{{ $post->appends(request()->input())->links(); }}
