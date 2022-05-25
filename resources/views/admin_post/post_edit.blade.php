@@ -85,7 +85,11 @@
                         <textarea style="height: 550px;" id="content" name="content" class="form-control"><?= $form['content'] ?></textarea>
                     </div>
 
+                    <input type="hidden" name="backlist" id="backlist" value="1" >
+
                     <button type="submit" class="btn btn-primary">Save</button>
+                    <!-- <span id="save_only" class="btn btn-primary" >Save</span> -->
+                    <!-- <span  id="save_and_back"  class="btn btn-info" >Save & Back To List </span> -->
                     <a class="btn btn-secondary" href="<?= url('admin/post') ?>">
                         Kembali</a>
                 </div>

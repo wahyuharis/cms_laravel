@@ -5,7 +5,7 @@ $segment3 = strtolower(Request::segment(3));
 ?>
 
 <li class="nav-item   ">
-    <a href="<?= url("/") ?>/admin/" class="nav-link ">
+    <a href="<?= url("/") ?>/admin/home" class="nav-link ">
         <i class="fas fa-tachometer-alt"></i>
         <p>
             Dashboard </p>

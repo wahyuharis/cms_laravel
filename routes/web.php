@@ -52,7 +52,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 
 Route::middleware([NativeLogin::class])->group(function () {
-    Route::get('admin', [HomeController::class, 'index']);
+    Route::get('admin/', [HomeController::class, 'index']);
+    Route::get('admin/home/', [HomeController::class, 'index']);
 
     //category
     Route::get('admin/category', [CategoryController::class, 'index']);

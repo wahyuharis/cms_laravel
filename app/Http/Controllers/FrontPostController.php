@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FrontPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,7 +10,6 @@ class FrontPostController extends Controller
 {
     function index()
     {
-
         $view_data = array();
         $view_data['page_title'] = "Posts";
         $view_data['page_subtitle'] = "Feel Happy to share";

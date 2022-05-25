@@ -9,6 +9,16 @@
 
     $(document).ready(function() {
 
+        $('#save_only').click(function() {
+            $('#backlist').val(0);
+            $('#form_1').submit();
+        });
+
+        $('#save_and_back').click(function() {
+            $('#backlist').val(1);
+            $('#form_1').submit();
+        });
+
         $('input[name="post_date"]').daterangepicker({
             singleDatePicker: true,
             "locale": {
@@ -50,11 +60,10 @@
                 {
                     if (data.success) {
                         window.location = '<?= url('admin/post') ?>';
-                        console.log(data);
                     } else {
                         toastr.error(data.message);
                     }
-                    console.log(data);
+                    // console.log(data);
                     JsLoadingOverlay.hide();
                 },
                 error: function(err, txt) {

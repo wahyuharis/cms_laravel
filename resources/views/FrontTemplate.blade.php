@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 $tags = DB::table('post_tags')->get();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8" />
@@ -22,14 +22,14 @@ $tags = DB::table('post_tags')->get();
     <link href="<?= url("/gh-pages") ?>/css/styles.css" rel="stylesheet" />
 
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 </head>
 
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#"><?= env('APP_NAME') ?></a>
+            <a class="navbar-brand" href="<?= url('/') ?>"><?= env('APP_NAME') ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -68,7 +68,7 @@ $tags = DB::table('post_tags')->get();
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <form id="search-form" method="get" action="<?=url('post/search/')?>" >
+                        <form id="search-form" method="get" action="<?= url('post/search/') ?>">
                             <div class="form-floating">
                                 <input class="form-control" id="search" name="search" type="text" placeholder="Search" data-sb-validations="required" />
                                 <label for="search">Search</label>
@@ -76,7 +76,7 @@ $tags = DB::table('post_tags')->get();
                             </div>
                             <br>
                             <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i> Search
+                                <i class="fa-solid fa-magnifying-glass"></i> Search
                             </button>
                         </form>
                         <br><br><br>
@@ -86,7 +86,7 @@ $tags = DB::table('post_tags')->get();
                     <div class="col-sm-12">
                         <?php foreach ($tags as $row) { ?>
                             <!-- <span class="badge bg-secondary"><?= $row->tags_name ?></span> &nbsp; -->
-                            <a href="<?=url('post/bytags/?tags='. urlencode($row->tags_name) )?>" class="btn btn-sm btn-secondary" ><?=$row->tags_name?></a> &nbsp;
+                            <a href="<?= url('post/bytags/?tags=' . urlencode($row->tags_name)) ?>" class="btn btn-sm btn-secondary"><?= $row->tags_name ?></a> &nbsp;
                         <?php } ?>
                     </div>
                 </div>
@@ -125,7 +125,7 @@ $tags = DB::table('post_tags')->get();
                             </a>
                         </li>
                     </ul>
-                    <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2022</div>
+                    <div class="small text-center text-muted fst-italic">Copyright &copy; <?= env('APP_NAME') ?> 2022</div>
                 </div>
             </div>
         </div>
@@ -134,6 +134,11 @@ $tags = DB::table('post_tags')->get();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="<?= url("/gh-pages") ?>/js/scripts.js"></script>
+    <script src="<?= url("/") ?>/custom/custom.js"></script>
+
+    <span class="btn btn-primary" id="scroll-top" style="position: fixed;right: 20px; bottom: 20px;">
+        <i class="fa-solid fa-chevron-up"></i>
+    </span>
 </body>
 
 </html>
